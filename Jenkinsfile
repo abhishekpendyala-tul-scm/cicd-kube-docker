@@ -83,6 +83,13 @@ pipeline {
         stage('Upload Image'){
           steps{
             script {
+
+              // Debugging: List Docker images
+              sh 'docker images'
+      
+              // Debugging: Check Docker login
+              sh 'docker info'
+
               docker.withRegistry('', registryCredential) {
                 dockerImage.push("V$BUILD_NUMBER")
                 dockerImage.push('latest')
